@@ -27,9 +27,10 @@ function getApiData (searchTerm, callback) {
 }
 
 // function that generates results string
-function generateResults () {
+function generateResults (data) {
   console.log(`Results string generated here`);
-  return `<p>thumbnails will be appended here</p>`;
+  console.log(data);
+  return `<p>thumbnails</p>`;
 }
 
 function displayResults () {
