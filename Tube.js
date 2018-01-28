@@ -21,21 +21,26 @@ function getApiData (searchTerm, callback) {
   const query = {
     part: 'snippet',
     key: 'AIzaSyBb3SPRWQyvuaXEj6Bp_8Erjz_qeRxha5g',
-    q: `${searchTerm}`
+    q: searchTerm
   }
   $.getJSON(YOUTUBE_SEARCH_URL, query, callback);
 }
 
 // function that generates results string
-function generateResults (data) {
+function generateResults (elem) {
   console.log(`Results string generated here`);
-  console.log(data);
-  return `<p>thumbnails</p>`;
+  return `
+    <div class ="thumbnail-div">
+      <img src="${elem.snippet.thumbnails.medium.url}" class="thumbnail-img">
+      <h3>Thumbnail Title</h3>
+    </div>`;
 }
 
-function displayResults () {
+function displayResults (data) {
   console.log(`Display Results ran`);
-  $('.js-search-results').html(generateResults());
+  console.log(data);
+  const results = data.items.map((elem, index) => generateResults(elem))
+  $('.js-search-results').html(results);
 }
 
 // submit event listener function (where results appended to page?)
@@ -46,10 +51,10 @@ function submitListen (){
     event.preventDefault();
     console.log(`Submit button heard`);
     const queryTarget = $(event.currentTarget).find('.js-query');
-    const query = queryTarget.val();
+    const userText = queryTarget.val();
     // clear out the input
     queryTarget.val("");
-    getApiData(query, displayResults)
+    getApiData(userText, displayResults)
   })
 }
 
