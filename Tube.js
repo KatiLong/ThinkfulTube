@@ -13,7 +13,7 @@
 
 // URL variable
 const YOUTUBE_SEARCH_URL = 'https://www.googleapis.com/youtube/v3/search';
-const videoIDs = [];
+
 // get API data function which makes JSON/AJAX call - URL, query, callback params
 function getApiData (searchTerm, callback) {
   //create API object [inside getApiData]
@@ -27,25 +27,34 @@ function getApiData (searchTerm, callback) {
 }
 
 // function that generates results string
-function generateResults (elem, index) {
+function generateResults (elem) {
   console.log(`Results string generated here`);
-  // console.log(elem);
-  videoIDs.push(`${elem.id.videoId}`)
-  return `
-    <div class ="thumbnail-div ${index}">
-      <img src="${elem.snippet.thumbnails.medium.url}" class="thumbnail-img">
-      <h3 class='video-title'>${elem.snippet.title}</h3>
-      <p></p>
-    </div>`;
+  // if result is a channel
+  if (elem.id.channelId) {
+    return `
+      <div class ="thumbnail-div">
+        <a href="https://www.youtube.com/user/${elem.snippet.channelTitle}" target=_blank>
+          <img src="${elem.snippet.thumbnails.medium.url}" class="thumbnail-img">
+          <h3 class='video-title'>${elem.snippet.title}</h3>
+        </a>
+      </div>`
+  } // if result is a video
+  else {
+    return `
+      <div class ="thumbnail-div">
+        <a href="https://www.youtube.com/watch?v=${elem.id.videoId}" target=_blank>
+          <img src="${elem.snippet.thumbnails.medium.url}" class="thumbnail-img">
+          <h3 class='video-title'>${elem.snippet.title}</h3>
+        </a>
+      </div>`;
+  }
 }
 
 function displayResults (data) {
   console.log(`Display Results ran`);
   console.log(data);
-  const results = data.items.map((elem, index) => generateResults(elem, index));
+  const results = data.items.map((elem, index) => generateResults(elem));
   $('.js-search-results').html(results);
-  console.log(videoIDs);
-  console.log(results);
 }
 
 // submit event listener function (where results appended to page?)
@@ -59,7 +68,8 @@ function submitListen (){
     const userText = queryTarget.val();
     // clear out the input
     queryTarget.val("");
-    getApiData(userText, displayResults)
+    getApiData(userText, displayResults);
+    // displayResults();
   })
 }
 
@@ -67,13 +77,10 @@ function submitListen (){
 // click listener on thumnail image, title
 // open new tab with link
 
-function videoURL () {
-  $('.js-search-results').on('click', '.thumbnail-img', function (event){
-    event.stopPropogation();
-    let video = $(event.currentTarget).parent();
-    window.open(event.currentTarget, '_blank');
-  })
-}
+
+
+$(submitListen());
+
 
 //user stories
 
@@ -85,4 +92,18 @@ function videoURL () {
 // submit event listener function (where results appended to page?)
 // document ready function
 
-$(submitListen());
+
+/* Passing Local Data between Functions */
+// const getData = doIt();
+
+// doThat(getData);
+
+// function doIt() {
+  // const person = { name: "Kati", age: 19 };
+
+  // function getObj() {
+    // return person;
+  // } return getObj;
+// }
+
+// function doThat(dataFn) { console.log(dataFn()); }
