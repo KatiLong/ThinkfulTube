@@ -11,7 +11,7 @@ main {
 }
 
 h1 {
-  margin-bottom: 5px;
+  /*margin-bottom: 5px;*/
 }
 
 #results-heading {
@@ -23,9 +23,16 @@ h1 {
 }
 
 form {
-  padding: 10px 20px 40px;
+  padding: 20px 20px 30px;
   line-height: 30px;
   font-size: 20px
+}
+
+a {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  width: 100%;
 }
 
 .js-search-results {
@@ -58,3 +65,11 @@ form {
   font-weight: 400;
   text-align: left;
 }
+
+/*Media Queries*/
+@media (min-width: 500px) {
+  .thumbnail-div {
+    width: 500px;
+  }
+}
+
