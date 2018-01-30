@@ -24,7 +24,7 @@
 </head>
 <body>
 
-  <header>
+  <header role="banner">
     <h1>Thinkful Tube</h1>
     <!-- Search Form that accepts one search term input -->
     <form action="#" class='js-search-form'>
@@ -35,9 +35,9 @@
     </form>
   </header>
 
-  <main role='main'>
+  <main role='main' aria-live="assertive" hidden>
     <!-- Dislays list of thumbnails in results section -->
-    <div class="js-search-results" aria-live="assertive" hidden>
+    <div class="js-search-results">
     </div>
   </main>
 

@@ -4,6 +4,9 @@
   box-sizing: border-box;
   font-family: 'Roboto Slab', serif;
 }
+header {
+  text-align: center;
+}
 
 main {
   width: 100%;
