@@ -68,6 +68,7 @@ function submitListen (){
     const userText = queryTarget.val();
     // clear out the input
     queryTarget.val("");
+    $('.js-search-results').prop('hidden', false);
     getApiData(userText, displayResults);
     // displayResults();
   })

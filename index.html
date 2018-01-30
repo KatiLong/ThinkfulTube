@@ -1,3 +1,15 @@
+<!-- Complete
+//I should be able to use the keyboard alone to access core information in the app.
+//I should be able to use and submit the form with the keyboard.
+//Tab should take me through links to each YouTube video and I should be able to activate the links with the keyboard. -->
+<!-- Incomplete
+//I should be given textual feedback when results appear, including the number of results.
+//As a screen reader user, I should be able to accomplish the above and:
+//I should be aurally notified when results appear on the page
+//I should be able to understand the purpose of each focusable element
+//I should know which video each link will open.
+//I should also know if an action will open or close a lightbox. -->
+
 <!DOCTYPE html>
 <html lang='en'>
 <head>
@@ -11,27 +23,22 @@
     crossorigin="anonymous"></script>
 </head>
 <body>
-  <main>
+
+  <header>
     <h1>Thinkful Tube</h1>
     <!-- Search Form that accepts one search term input -->
     <form action="#" class='js-search-form'>
-      <legend>Search for videos here</legend>
-
-      <label for="query"></label>
-      <input type='search' placeholder='e.g. adorable kittens' class='js-query'>
+      <label for="query">Search for videos here</label>
+      <br>
+      <input type='search' name="query" placeholder='e.g. adorable kittens' class='js-query' required/>
       <button type='submit'>Search</button>
     </form>
-    <!-- Dislays list of thumbnails in results section -->
-    <div class="js-search-results">
-<!--       <div id='results-heading'>
-        <h2>Search results</h2>
-      </div> -->
-<!--       <div class ="thumbnail-div">
-        <img src="http://cdn.drinkingcinema.com/uli/LtD.gif" class="thumbnail-img">
-        <h3>Thumbnail Title</h3>
-      </div> -->
-    </div>
+  </header>
 
+  <main role='main'>
+    <!-- Dislays list of thumbnails in results section -->
+    <div class="js-search-results" aria-live="assertive" hidden>
+    </div>
   </main>
 
   <script src="Tube.js" type="text/javascript"></script>
