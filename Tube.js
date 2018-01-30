@@ -42,7 +42,8 @@ function displayResults (data) {
   console.log(`Display Results ran`);
   console.log(data);
   const results = data.items.map((elem, index) => generateResults(elem));
-  $('.js-search-results').html(results);
+  $('.js-search-results').html(`<p id="results-str">${data.items.length} search results</p>`);
+  $('.js-search-results').append(results);
 }
 
 function submitListen (){
@@ -54,7 +55,7 @@ function submitListen (){
     const userText = queryTarget.val();
     // clear out the input
     queryTarget.val("");
-    $('main').prop('hidden', false);
+    $('.js-search-results').prop('hidden', false);
     getApiData(userText, displayResults);
     // displayResults();
   })
